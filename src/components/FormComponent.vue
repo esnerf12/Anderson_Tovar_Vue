@@ -7,7 +7,14 @@
                     :modelValue="modelValue ? modelValue[field.id] : ''" 
                     @update="updateFormData"
                     :ref="el => setFieldRef(field, el)" />
+                <div v-for="(option) in field.options" :key="option.id" class="avalaible">
+                    <div>{{ option.label  }}</div>
+                </div>
+                <div class="disabled">
+
+                </div>
             </div>
+            <SelectUnselectField></SelectUnselectField>
             <div class="button-container">
                 <button type="submit" class="button primary">Guardar</button>
             </div>
@@ -21,6 +28,7 @@
 <script setup>
 import { ref, reactive, computed, defineAsyncComponent, isProxy, toRaw, watch } from 'vue';
 import fieldMixin from './FieldMixin';
+import SelectUnselectField from './SelectUnselectField.vue';
 const emit = defineEmits(['update', 'formSubmit']);
 const fieldRefs = {};
 
